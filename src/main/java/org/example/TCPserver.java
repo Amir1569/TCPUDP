@@ -19,7 +19,7 @@ public class TCPserver {
              PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true)) {
 
             String fileName = in.readLine();    // Read requested file name
-            File file = new File(fileName);
+            File file = new File("files/" + fileName);
 
             if (!file.exists()) {
                 out.println("File not found.");

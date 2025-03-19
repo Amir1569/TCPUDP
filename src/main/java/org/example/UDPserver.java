@@ -23,7 +23,7 @@ public class UDPserver {
     }
 
     private static void sendFileContent(String fileName, InetAddress clientAddress, int clientPort, DatagramSocket socket) throws IOException {
-        File file = new File(fileName);
+        File file = new File("files/" + fileName);
         if (!file.exists()) {
             System.out.println("File not found: " + fileName);
             return;
