@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="TCPUDP:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/TCPUDP_jar</output-path>
+    <root id="archive" name="TCPUDP.jar">
+      <element id="module-output" name="TCPUDP" />
+    </root>
+  </artifact>
+</component>
