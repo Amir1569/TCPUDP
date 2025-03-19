@@ -6,11 +6,11 @@ public class Main {
     public static void main(String[] args) throws IOException {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.print("Kies protocol: TCP(1) of UDP(2): ");
+        System.out.print("Choose protocol: TCP(1) or UDP(2): ");
         int protocol = scanner.nextInt();
-        scanner.nextLine(); // Leeg buffer
+        scanner.nextLine(); // empty buffer
 
-        System.out.print("Kies modus: Server(1) of Client(2): ");
+        System.out.print("Choose mode: Server(1) or Client(2): ");
         int mode = scanner.nextInt();
         scanner.nextLine();
 
@@ -27,7 +27,7 @@ public class Main {
                 UDPclient.main(new String[]{});
             }
         } else {
-            System.out.println("Ongeldige keuze.");
+            System.out.println("invalid choice");
         }
 
         scanner.close();

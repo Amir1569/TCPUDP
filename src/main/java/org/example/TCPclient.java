@@ -10,14 +10,14 @@ public class TCPclient {
         PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
         BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
-        String fileName = "example.txt";
-        out.println(fileName);
+        String fileName = "test.txt";
+        out.println(fileName);          // Request the file
 
         String line;
         while ((line = in.readLine()) != null) {
-            System.out.println(line);
+            System.out.println(line);   // Print the received content
         }
 
-        socket.close();
+        socket.close();                 // close the connection
     }
 }

@@ -7,13 +7,13 @@ public class UDPserver {
     public static void main(String[] args) throws IOException {
         int port = 12345;
         DatagramSocket serverSocket = new DatagramSocket(port);
-        System.out.println("UDP Server draait op poort " + port);
+        System.out.println("UDP Server runs at port " + port);
 
         byte[] buffer = new byte[1024];
 
         while (true) {
             DatagramPacket receivePacket = new DatagramPacket(buffer, buffer.length);
-            serverSocket.receive(receivePacket);
+            serverSocket.receive(receivePacket);                                                    // Receive filename request
             String fileName = new String(receivePacket.getData(), 0, receivePacket.getLength());
 
             InetAddress clientAddress = receivePacket.getAddress();
@@ -25,7 +25,7 @@ public class UDPserver {
     private static void sendFileContent(String fileName, InetAddress clientAddress, int clientPort, DatagramSocket socket) throws IOException {
         File file = new File(fileName);
         if (!file.exists()) {
-            System.out.println("Bestand niet gevonden: " + fileName);
+            System.out.println("File not found: " + fileName);
             return;
         }
 
@@ -34,9 +34,9 @@ public class UDPserver {
         while ((line = fileReader.readLine()) != null) {
             byte[] sendData = line.getBytes();
             DatagramPacket sendPacket = new DatagramPacket(sendData, sendData.length, clientAddress, clientPort);
-            socket.send(sendPacket);
+            socket.send(sendPacket);      // Send each line separately
         }
         fileReader.close();
-        System.out.println("Bestand verzonden naar client.");
+        System.out.println("File send to client.");
     }
 }

@@ -4,13 +4,13 @@ import java.net.*;
 
 public class TCPserver {
     public static void main(String[] args) throws IOException {
-        int port = 12345; // Standaard poort
+        int port = 12345; // Default port
         ServerSocket serverSocket = new ServerSocket(port);
-        System.out.println("Server draait op poort " + port);
+        System.out.println("Server runs on port:  " + port);
 
         while (true) {
-            Socket clientSocket = serverSocket.accept();
-            new Thread(() -> handleClient(clientSocket)).start();
+            Socket clientSocket = serverSocket.accept();            // Accept client connection
+            new Thread(() -> handleClient(clientSocket)).start();   // Handle in a new thread
         }
     }
 
@@ -18,18 +18,18 @@ public class TCPserver {
         try (BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
              PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true)) {
 
-            String fileName = in.readLine();
+            String fileName = in.readLine();    // Read requested file name
             File file = new File(fileName);
 
             if (!file.exists()) {
-                out.println("Bestand niet gevonden.");
+                out.println("File not found.");
                 return;
             }
 
             try (BufferedReader fileReader = new BufferedReader(new FileReader(file))) {
                 String line;
                 while ((line = fileReader.readLine()) != null) {
-                    out.println(line);
+                    out.println(line);          // send file content line by line
                 }
             }
         } catch (IOException e) {
